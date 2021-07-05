@@ -17,10 +17,10 @@ namespace ProjectKritskiy
         private IUserInputProxy _InputAngleY;
 
         public CameraController((IUserInputProxy mouseHorizontal, IUserInputProxy mouseVertical) input,
-            Transform mainCamera)
+            Transform mainCamera, Rigidbody rigidbody)
         {
             _mainCamera = mainCamera;
-            _playerBody = GameObject.Find("Player").GetComponent<Rigidbody>();
+            _playerBody = rigidbody;
             _offset = new Vector3(0f, 3f, 0f);
 
             _InputAngleX = input.mouseHorizontal;

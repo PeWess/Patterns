@@ -6,6 +6,12 @@ namespace ProjectKritskiy
 {
    public static partial class BuilderExtension
    {
+      public static GameObject SetName(this GameObject gameObject, string name)
+      {
+         gameObject.name = name;
+         return gameObject;
+      }
+      
       public static GameObject AddRigidBody(this GameObject gameObject, float mass)
       {
          var component = gameObject.AddComponent<Rigidbody>();
@@ -16,6 +22,12 @@ namespace ProjectKritskiy
       public static GameObject AddCapsuleCollider(this GameObject gameObject)
       {
          gameObject.GetOrAddComponent<CapsuleCollider>();
+         return gameObject;
+      }
+      
+      public static GameObject AddBoxTrigger(this GameObject gameObject)
+      {
+         gameObject.GetOrAddComponent<BoxCollider>().isTrigger = true;
          return gameObject;
       }
 

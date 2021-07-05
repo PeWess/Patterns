@@ -14,5 +14,7 @@ namespace ProjectKritskiy
         public int Ammo => _ammo;
         public float Speed => _speed;
         public Vector3Int Position => _position;
+
+        public Rigidbody Rigidbody { get; set; }
     }
 }

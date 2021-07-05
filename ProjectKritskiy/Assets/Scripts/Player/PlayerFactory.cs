@@ -13,7 +13,9 @@ namespace ProjectKritskiy
 
         public Transform CreatePlayer()
         {
-            return new GameObject("Player").AddRigidBody(60).AddCapsuleCollider().transform;
+            var player = new GameObject("Player").AddRigidBody(60).AddCapsuleCollider();
+            _playerData.Rigidbody = player.GetComponent<Rigidbody>();
+            return player.transform;
         }
     }
 }
