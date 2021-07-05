@@ -17,9 +17,9 @@ namespace ProjectKritskiy
         private IUserInputProxy _verticalInputProxy;
 
         public MoveController((IUserInputProxy inputHorizontal, float yAxis, IUserInputProxy inputVertical) input,
-            Transform unitLocation, IUnit unitData)
+            Transform unitLocation, IUnit unitData, Rigidbody rigidbody)
         {
-            _unitBody = GameObject.Find("Player").GetComponent<Rigidbody>();
+            _unitBody = rigidbody;
             _unitLocation = unitLocation;
             _unitData = unitData;
             _horizontalInputProxy = input.inputHorizontal;

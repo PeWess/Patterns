@@ -8,8 +8,10 @@ namespace ProjectKritskiy
     {
         [SerializeField] private string _playerDataPath;
         [SerializeField] private string _weaponDataPath;
+        [SerializeField] private string _medKitDataPath;
         private PlayerData _player;
         private WeaponData _weapon;
+        private MedKitData _medKit;
 
         public PlayerData Player
         {
@@ -34,6 +36,19 @@ namespace ProjectKritskiy
                 }
 
                 return _weapon;
+            }
+        }
+        
+        public MedKitData MedKit
+        {
+            get
+            {
+                if (_medKit == null)
+                {
+                    _medKit = Load<MedKitData>("Data/" + _medKitDataPath);
+                }
+
+                return _medKit;
             }
         }
 

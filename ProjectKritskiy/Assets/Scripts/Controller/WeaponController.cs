@@ -14,14 +14,14 @@ namespace ProjectKritskiy
         private int _maxMagazine;
         private int _playerAmmo;
 
-        public WeaponController(int magazine, int maxMagazine, int playerAmmo, GameObject bulletPrefab)
+        public WeaponController(int magazine, int maxMagazine, int playerAmmo, GameObject bulletPrefab, Rigidbody rigidbody)
         {
             _magazine = magazine;
             _maxMagazine = maxMagazine;
             _playerAmmo = playerAmmo;
             _bulletPrefab = bulletPrefab;
 
-            _unitBody = GameObject.Find("Player").GetComponent<Rigidbody>();
+            _unitBody = rigidbody;
             _offset = new Vector3(0f, 0f, 0.5f);
             _barrel = _unitBody.transform;
             _barrel.position += _offset;
@@ -34,6 +34,7 @@ namespace ProjectKritskiy
                 if (_magazine > 0)
                 {
                     var bullet = _bulletService.Create(_bulletPrefab);
+                    bullet.AddRigidBody(0.1f);
                     bullet.transform.position = _barrel.position;
                     bullet.GetComponent<Rigidbody>().AddForce(_barrel.forward * 100f);
                     _magazine -= 1;
