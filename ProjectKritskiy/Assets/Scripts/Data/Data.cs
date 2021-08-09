@@ -9,9 +9,11 @@ namespace ProjectKritskiy
         [SerializeField] private string _playerDataPath;
         [SerializeField] private string _weaponDataPath;
         [SerializeField] private string _medKitDataPath;
+        [SerializeField] private string _powerUpDataPath;
         private PlayerData _player;
         private WeaponData _weapon;
         private MedKitData _medKit;
+        private PowerUpData _powerUp;
 
         public PlayerData Player
         {
@@ -49,6 +51,19 @@ namespace ProjectKritskiy
                 }
 
                 return _medKit;
+            }
+        }
+        
+        public PowerUpData PowerUp
+        {
+            get
+            {
+                if (_powerUp == null)
+                {
+                    _powerUp = Load<PowerUpData>("Data/" + _powerUpDataPath);
+                }
+
+                return _powerUp;
             }
         }
 

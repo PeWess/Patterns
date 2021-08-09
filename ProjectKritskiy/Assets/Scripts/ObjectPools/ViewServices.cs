@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ProjectKritskiy
 {
-    internal sealed class ViewServices
+    public sealed class ViewServices
     {
         private readonly Dictionary<int, ObjectPool> _viewCache = new Dictionary<int, ObjectPool>();
 

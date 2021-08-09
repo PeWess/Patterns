@@ -4,8 +4,10 @@ namespace ProjectKritskiy
 {
     public interface IWeapon
     {
-        int MaxMagazine { get; }
+        IShot WeaponType { get; set; }
+        int MaxMagazine { get; set; }
         int Magazine { get; }
+        int Damage { get; set; }
         GameObject BulletPrefab { get; }
     }
 }

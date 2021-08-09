@@ -10,11 +10,14 @@ namespace ProjectKritskiy
         private readonly Vector3 _offset;
 
         private GameObject _bulletPrefab;
+        private IShot _currentWeapon;
+        private IShot _weaponProxy;
+        private WeaponJammed _weaponJammed;
         private int _magazine;
         private int _maxMagazine;
         private int _playerAmmo;
 
-        public WeaponController(int magazine, int maxMagazine, int playerAmmo, GameObject bulletPrefab, Rigidbody rigidbody)
+        public WeaponController(IShot currentWeapon, int magazine, int maxMagazine, int playerAmmo, GameObject bulletPrefab, Rigidbody rigidbody)
         {
             _magazine = magazine;
             _maxMagazine = maxMagazine;
@@ -25,19 +28,20 @@ namespace ProjectKritskiy
             _offset = new Vector3(0f, 0f, 0.5f);
             _barrel = _unitBody.transform;
             _barrel.position += _offset;
+
+            _weaponJammed = new WeaponJammed(false);
+            _currentWeapon = currentWeapon;
+            _weaponProxy = new WeaponProxy(_currentWeapon, _weaponJammed);
         }
 
         public void Execute(float deltaTime)
         {
-            if (Input.GetButtonDown(KeyboardManager.FIRE))
+            if (Input.GetButtonDown(ButtonManager.FIRE))
             {
                 if (_magazine > 0)
                 {
-                    var bullet = _bulletService.Create(_bulletPrefab);
-                    bullet.AddRigidBody(0.1f);
-                    bullet.transform.position = _barrel.position;
-                    bullet.GetComponent<Rigidbody>().AddForce(_barrel.forward * 100f);
-                    _magazine -= 1;
+                    _weaponProxy.Shot(_bulletService, _bulletPrefab, _barrel);
+                    if(_weaponJammed.IsJammed == false) _magazine -= 1;
                 }
             }
 

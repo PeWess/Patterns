@@ -1,6 +1,6 @@
 ﻿namespace ProjectKritskiy
 {
-    public static class KeyboardManager
+    public static class ButtonManager
     {
         public const string FIRE = "Fire1";
     }
