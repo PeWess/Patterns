@@ -6,11 +6,13 @@ namespace ProjectKritskiy
     {
         private readonly MedKitData _medKitData;
         private readonly PowerUpData _powerUpData;
+        private readonly KeyData _keyData;
 
-        public PickUpFactory(MedKitData medKitData, PowerUpData powerUpData)
+        public PickUpFactory(MedKitData medKitData, PowerUpData powerUpData, KeyData keyData)
         {
             _medKitData = medKitData;
             _powerUpData = powerUpData;
+            _keyData = keyData;
         }
 
         public Transform CreateMedKit()
@@ -21,6 +23,14 @@ namespace ProjectKritskiy
         public Transform CreatePowerUp()
         {
             return new GameObject("PowerUp").AddBoxTrigger().transform;
+        }
+        
+        public Key CreateKey()
+        {
+            Key key = new Key();
+            var listenerKeyPickUp = new ListenerKeyPickUp();
+            listenerKeyPickUp.Add(key);
+            return key;
         }
     }
 }

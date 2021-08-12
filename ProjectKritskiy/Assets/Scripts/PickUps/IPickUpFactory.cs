@@ -6,5 +6,6 @@ namespace ProjectKritskiy
     {
         Transform CreateMedKit();
         Transform CreatePowerUp();
+        Key CreateKey();
     }
 }

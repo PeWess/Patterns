@@ -13,10 +13,10 @@ namespace ProjectKritskiy
             var inputInitialization = new InputInitialization();
             var playerFactory = new PlayerFactory(data.Player);
             var weaponFactory = new WeaponFactory(data.Weapon);
-            var pickUpFactory = new PickUpFactory(data.MedKit, data.PowerUp);
+            var pickUpFactory = new PickUpFactory(data.MedKit, data.PowerUp, data.Key);
             var playerInitialization = new PlayerInitialization(playerFactory, data.Player.Position);
             var weaponInitialization = new WeaponInitialization(weaponFactory, data.Player.Position);
-            var pickUpInitialization = new PickUpInitialization(pickUpFactory, data.MedKit.Position, data.PowerUp.Position);
+            var pickUpInitialization = new PickUpInitialization(pickUpFactory, data.MedKit.Position, data.PowerUp.Position, data.Key.Position);
 
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);

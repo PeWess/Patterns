@@ -7,8 +7,9 @@ namespace ProjectKritskiy
         private readonly IPickUpFactory _pickUpFactory;
         private Transform _medKitPosition;
         private Transform _powerUpPosition;
+        private Vector3Int _keyPosition;
 
-        public PickUpInitialization(IPickUpFactory pickUpFactory, Vector3Int medKit, Vector3Int powerUp)
+        public PickUpInitialization(IPickUpFactory pickUpFactory, Vector3Int medKit, Vector3Int powerUp, Vector3Int key)
         {
             _pickUpFactory = pickUpFactory;
             
@@ -17,6 +18,8 @@ namespace ProjectKritskiy
             
             _powerUpPosition = _pickUpFactory.CreatePowerUp();
             _powerUpPosition.position = powerUp;
+            
+            _keyPosition = _pickUpFactory.CreateKey().Position;
         }
 
         public void Initialization()
